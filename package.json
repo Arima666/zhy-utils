@@ -1,0 +1,39 @@
+{
+  "name": "zhy-utils",
+  "version": "1.0.0",
+  "description": "常用工具库集合",
+  "author": "Arima <arima_p@foxmail.com>",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "jest --color",
+    "commit": "git add . && git cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arima-P/zhy-utils.git"
+  },
+  "keywords": [
+    "zhy",
+    "Arima",
+    "utils",
+    "workspace"
+  ],
+  "bugs": {
+    "url": "https://github.com/Arima-P/zhy-utils/issues"
+  },
+  "homepage": "https://github.com/Arima-P/zhy-utils#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  }
+}

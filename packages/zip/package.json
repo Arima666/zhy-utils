@@ -1,0 +1,13 @@
+{
+  "name": "@zhy/zip",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "jszip": "^3.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}

@@ -1,6 +1,7 @@
 import { promises as fsSync } from 'fs';
+import JSZip from 'jszip';
 
-export default async function readFile(_zip, _path) {
+export default async function readFile(_zip: JSZip, _path: string) {
   const files = await fsSync.readdir(_path);
 
   for (let i = 0; i < files.length; i++) {

@@ -1,6 +1,6 @@
 import { existsSync, promises as fsSync } from 'fs';
 
-export default async function deleteOldZip(oldZipName, path) {
+export default async function deleteOldZip(oldZipName: string, path: string) {
   const oldZipPath = `${path}/${oldZipName}.zip`;
   try {
     const oldZip = existsSync(oldZipPath);

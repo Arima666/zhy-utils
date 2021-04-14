@@ -1,33 +1,20 @@
-// import { promises as fsSync } from 'fs';
-// import path from 'path';
-// import JSZip from 'jszip';
+import { existsSync, promises as fsSync } from 'fs';
+import path from 'path';
+import JSZip from 'jszip';
 import { program } from 'commander';
-import logger from '../../utils/logger';
-// import deleteOldZip from './utils/deleteOldZip';
-// import readFile from './utils/readFile';
+import { name, version } from '../package.json';
+import { Configuration } from './configs';
+import Options from './configs/options';
+import logger from './utils/logger';
+import getConfiguration from './utils/getConfiguration';
+import checkOptions from './utils/checkOptions';
+import deleteOldZip from './utils/deleteOldZip';
+import readFile from './utils/readFile';
+import getDirNameFromPath from './utils/getDirNameFromPath';
 
-const { name, version } = require('../package.json');
-
-// const zip = new JSZip();
-
-// const NAME_KEY = '--name';
-// const prev_index = process.argv.indexOf(NAME_KEY);
-// const name_input =
-//   prev_index >= 0 && process.argv[prev_index + 1]
-//     ? process.argv[prev_index + 1]
-//     : '';
-
+const zip = new JSZip();
 // 当前路径
-// const curPath = __dirname;
-// 需要压缩的目标文件夹名字
-// const targetDirName = 'build';
-// 压缩包第一层文件夹名字，设置空值则压缩包内第一层文件夹名字与目标文件夹名字相同
-// const firstLevelDirName = 'admin';
-// 压缩包名字，设置空值则与第一层文件夹名字相同
-// const zipName = name_input ? name_input : '';
-
-// 压缩配置项
-// const zipOpt: JSZip.JSZipGeneratorOptions<JSZip.OutputType> = {};
+const curPath = process.cwd();
 
 export type ZipOptions = {
   path?: string;
@@ -35,44 +22,77 @@ export type ZipOptions = {
   compressLevel?: number;
   mimeType?: string;
   platform?: 'DOS' | 'UNIX';
+  name?: string;
+  firstDirName?: string;
 };
 
 async function startZip(options: ZipOptions) {
-  logger.info(options);
+  logger.info('压缩参数\n', JSON.stringify(options, null, 2));
+  const { name, firstDirName, ...rets } = options;
 
-  /* try {
-    const _firstName = firstLevelDirName || targetDirName;
-    const _zipName = zipName || _firstName;
+  try {
+    const targetPath = path.resolve(process.cwd(), options.path);
+    const targetExists = existsSync(targetPath);
 
-    const targetDir = path.join(curPath, targetDirName);
-    // 寻找旧的压缩包，存在则删除
-    await deleteOldZip(_zipName, curPath);
-    // 设置压缩包内第一层的文件夹
-    const zipFirstDir = zip.folder(_firstName);
-    // 读取目标文件夹下所有内容
-    await readFile(zipFirstDir, targetDir);
+    if (targetExists) {
+      const targetStatus = await fsSync.stat(targetPath);
 
-    const content = await zip.generateAsync({
-      ...zipOpt,
-      type: 'uint8array'
-    });
+      const targetName = getDirNameFromPath(targetPath);
 
-    // 生成压缩包文件
-    await fsSync.writeFile(`${curPath}/${_zipName}.zip`, content, 'utf-8');
+      if (targetStatus.isDirectory()) {
+        // 设置压缩包内第一层的文件夹
+        const zipFirstDir = zip.folder(firstDirName || targetName);
+        // 读取目标文件夹下所有内容
+        await readFile(zipFirstDir, targetPath);
+      } else if (targetStatus.isFile()) {
+        const file = await fsSync.readFile(targetPath);
+        if (firstDirName) {
+          const zipFirstDir = zip.folder(firstDirName);
+          zipFirstDir.file(targetName, file);
+        } else {
+          zip.file(targetName, file);
+        }
+      }
+
+      const content = await zip.generateAsync({
+        ...rets,
+        type: 'uint8array'
+      });
+
+      // 生成压缩包文件
+      await fsSync.writeFile(`${curPath}/${name}.zip`, content, 'utf-8');
+      logger.success('生成压缩包成功');
+    } else {
+      console.warn('目标文件不存在', targetPath);
+    }
   } catch (err) {
     throw err;
-  } */
+  }
 }
 
-program
-  .version(version, '-v, --version', `${name} 的版本`)
-  .option('-p, --path', '压缩目标相对路径')
-  .option(
-    '-c, --compression',
-    '是否压缩，STORE（不压缩，默认）、DEFLATE（压缩）'
-  )
-  .option('-l, --compress-level', '压缩的等级：1-9')
-  .option('-m, --mime-type', '压缩文件后缀名，zip（默认）')
-  .option('-p, --platform', '使用平台，DOS（默认）、UNIX')
-  .action(startZip)
-  .parseAsync(process.argv);
+program.version(version, '-v, --version', `${name} 的版本`);
+// 注入命令行参数
+Object.values(Options).forEach(item => {
+  program.addOption(item);
+});
+program.parse();
+
+// 合并配置文件和命令行参数
+const cfg: ZipOptions = {
+  ...getConfiguration(Configuration),
+  ...program.opts()
+};
+
+checkOptions.path(cfg.path);
+// 检查参数合法性
+Object.entries(cfg).forEach(([key, val]) => {
+  checkOptions[key as keyof ZipOptions]?.(val);
+});
+
+startZip(cfg)
+  .then(() => {
+    logger.success('执行完毕！');
+  })
+  .catch(err => {
+    logger.error('执行失败！', err);
+  });

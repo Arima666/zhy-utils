@@ -1,5 +1,7 @@
 import { InvalidOptionArgumentError } from 'commander';
-import { is } from '../../../utils';
+import { ZipOptions } from '..';
+import { COMPRESSION, COMPRESS_LEVEL, PLATFORM } from '../configs';
+import is from './is';
 
 function throwErr(tips: string) {
   throw new InvalidOptionArgumentError(tips);
@@ -14,8 +16,10 @@ function checkPath(val?: string) {
 
 function checkCompression(val?: string) {
   if (val) {
-    if (!['STORE', 'DEFLATE'].includes(val))
-      throwErr('Compression should be STORE or DEFLATE');
+    if (!COMPRESSION.includes(val))
+      throwErr(
+        `Compression is invalid. Allowed choices are ${COMPRESSION.join(', ')}.`
+      );
   }
 
   return val;
@@ -23,20 +27,56 @@ function checkCompression(val?: string) {
 
 function checkLevel(val?: string) {
   if (val) {
-    const level = Number(val);
-    if (!is.num(level)) throwErr('CompressLevel should be a number');
-    if (level < 1 || level > 9) throwErr('CompressLevel should between 1 to 9');
+    if (!COMPRESS_LEVEL.includes(val))
+      throwErr('CompressLevel should between 1 to 9');
 
-    return level;
+    return Number(val);
   }
 
   return val;
 }
 
-const checkOptions = {
+function checkMimeType(val?: string) {}
+
+function checkPlatform(val?: string) {
+  if (val) {
+    if (!PLATFORM.includes(val))
+      throwErr(
+        `Platform is invalid. Allowed choices are ${PLATFORM.join(', ')}.`
+      );
+  }
+
+  return val;
+}
+
+function checkName(val?: any) {
+  if (val) {
+    if (/[?\\/:*<>|"]/g.test(val))
+      throwErr('Name is invalid. Should not have ?\\/:*<>|"');
+  }
+
+  return val;
+}
+
+function checkFirstDirName(val?: any) {
+  if (val) {
+    if (/[?\\/:*<>|"]/g.test(val))
+      throwErr('FirstDirName is invalid. Should not have ?\\/:*<>|"');
+  }
+
+  return val;
+}
+
+const checkOptions: {
+  [key in keyof ZipOptions]: (val?: any) => any;
+} = {
   path: checkPath,
   compression: checkCompression,
-  compressLevel: checkLevel
+  compressLevel: checkLevel,
+  // mimeType: checkMimeType,
+  platform: checkPlatform,
+  name: checkName,
+  firstDirName: checkFirstDirName
 };
 
 export default checkOptions;

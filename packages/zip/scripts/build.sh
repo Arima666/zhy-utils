@@ -6,6 +6,4 @@
 
 set -ex
 
-./../../scripts/indices.js
-
-tsc
+tsc --project tsconfig.build.json

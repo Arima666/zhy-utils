@@ -4,6 +4,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "scripts": {
+    "build": "sh ./scripts/build.sh",
+    "dev": "tsc -w"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "figures": "^3.2.0",

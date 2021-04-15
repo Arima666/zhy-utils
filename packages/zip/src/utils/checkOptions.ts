@@ -1,7 +1,8 @@
 import { InvalidOptionArgumentError } from 'commander';
+import is from '@zhy/utils';
 import { ZipOptions } from '..';
 import { COMPRESSION, COMPRESS_LEVEL, PLATFORM } from '../configs';
-import is from './is';
+// import is from './is';
 
 function throwErr(tips: string) {
   throw new InvalidOptionArgumentError(tips);

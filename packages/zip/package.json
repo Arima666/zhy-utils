@@ -6,6 +6,7 @@
     "compress": "dist/index.js"
   },
   "scripts": {
+    "build": "sh ./scripts/build.sh",
     "dev": "tsc -w"
   },
   "dependencies": {
@@ -14,7 +15,8 @@
     "figures": "^3.2.0",
     "find-up": "^5.0.0",
     "jszip": "^3.6.0",
-    "yargs": "^16.2.0"
+    "yargs": "^16.2.0",
+    "@zhy/utils": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.37",

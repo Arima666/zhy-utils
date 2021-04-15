@@ -8,7 +8,9 @@
     "sourceMap": true, // 生成目标文件的sourceMap文件
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true,
+    "rootDir": "./src/"
   },
   "files": ["./src/index.ts"] // 指定待编译文件
 }

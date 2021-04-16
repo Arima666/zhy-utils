@@ -1,5 +1,5 @@
 import { InvalidOptionArgumentError } from 'commander';
-import is from '@zhy/utils';
+import { is } from '@zhy/utils';
 import { ZipOptions } from '..';
 import { COMPRESSION, COMPRESS_LEVEL, PLATFORM } from '../configs';
 // import is from './is';

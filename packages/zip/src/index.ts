@@ -2,7 +2,7 @@ import { existsSync, promises as fsSync } from 'fs';
 import path from 'path';
 import JSZip from 'jszip';
 import { program } from 'commander';
-import logger from '@zhy/utils';
+import { logger } from '@zhy/utils';
 import { name, version } from '../package.json';
 import { Configuration } from './configs';
 import Options from './configs/options';

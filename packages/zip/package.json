@@ -2,6 +2,7 @@
   "name": "@zhy/utils-zip",
   "version": "1.0.0",
   "license": "MIT",
+  "typings": "typings/index.d.ts",
   "bin": {
     "compress": "dist/index.js"
   },
@@ -10,13 +11,11 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "@zhy/utils": "1.0.0",
     "commander": "^7.2.0",
-    "figures": "^3.2.0",
     "find-up": "^5.0.0",
     "jszip": "^3.6.0",
-    "yargs": "^16.2.0",
-    "@zhy/utils": "1.0.0"
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.37",

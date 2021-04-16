@@ -1,28 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var is = {
-    arr: function (a) {
+const is = {
+    arr(a) {
         return Array.isArray(a);
     },
-    obj: function (a) {
+    obj(a) {
         return typeof a === 'object';
     },
-    str: function (a) {
+    str(a) {
         return typeof a === 'string';
     },
-    num: function (a) {
+    num(a) {
         return typeof a === 'number' && !isNaN(a);
     },
-    und: function (a) {
+    und(a) {
         return typeof a === 'undefined';
     },
-    nul: function (a) {
+    nul(a) {
         return a === null;
     },
-    boo: function (a) {
+    boo(a) {
         return typeof a === 'boolean';
     },
-    fun: function (a) {
+    fun(a) {
         return a instanceof Function;
     }
 };

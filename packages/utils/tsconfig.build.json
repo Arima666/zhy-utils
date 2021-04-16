@@ -4,10 +4,11 @@
   "exclude": ["**/*.test.ts"],
   "compilerOptions": {
     "rootDir": "./src/",
-    "outDir": "esm",
+    "outDir": "dist",
     "declaration": true,
     "module": "CommonJS",
     "target": "ES2015",
-    "sourceMap": true
+    "sourceMap": true,
+    "declarationDir": "typings"
   }
 }

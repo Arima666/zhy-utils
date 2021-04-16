@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const find_up_1 = __importDefault(require("find-up"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
-function getConfiguration(packageName, files) {
+const package_json_1 = require("../../package.json");
+function getConfiguration(files) {
     let config = {};
     const configPath = find_up_1.default.sync(files);
     if (!configPath) {
@@ -25,7 +26,7 @@ function getConfiguration(packageName, files) {
         config = JSON.parse(fs_1.readFileSync(configPath, { encoding: 'utf-8' }));
     }
     if (typeof config !== 'object') {
-        throw Error(`[${packageName}] Invalid configuration in ${configPath} provided. Expected an object but found ${typeof config}.`);
+        throw Error(`[${package_json_1.name}] Invalid configuration in ${configPath} provided. Expected an object but found ${typeof config}.`);
     }
     return config;
 }

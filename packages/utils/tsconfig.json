@@ -6,6 +6,7 @@
     "removeComments": true, // 删除注释
     "preserveConstEnums": true, // 保留 const 和 enum 声明
     "sourceMap": true, // 生成目标文件的sourceMap文件
-    "esModuleInterop": true // 允许export=导出，由import from 导入
+    "esModuleInterop": true, // 允许export=导出，由import from 导入
+    "pretty": true
   }
 }

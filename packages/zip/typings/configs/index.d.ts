@@ -6,6 +6,5 @@ export declare enum OptionsKey {
     'platform' = "platform"
 }
 export declare const Configuration: string[];
-export declare const COMPRESSION: string[];
+export declare const ENCRYPTIONMETHOD: string[];
 export declare const COMPRESS_LEVEL: string[];
-export declare const PLATFORM: string[];

@@ -1,29 +1,9 @@
 import { InvalidOptionArgumentError } from 'commander';
-import { is } from '@zhy/utils';
 import { ZipOptions } from '..';
-import { COMPRESSION, COMPRESS_LEVEL, PLATFORM } from '../configs';
-// import is from './is';
+import { ENCRYPTIONMETHOD, COMPRESS_LEVEL } from '../configs';
 
-function throwErr(tips: string) {
+export function throwErr(tips: string) {
   throw new InvalidOptionArgumentError(tips);
-}
-
-function checkPath(val?: string) {
-  if (!val) throwErr('Path is required');
-  if (!is.str(val)) throwErr('Path should be a string');
-
-  return val;
-}
-
-function checkCompression(val?: string) {
-  if (val) {
-    if (!COMPRESSION.includes(val))
-      throwErr(
-        `Compression is invalid. Allowed choices are ${COMPRESSION.join(', ')}.`
-      );
-  }
-
-  return val;
 }
 
 function checkLevel(val?: string) {
@@ -33,49 +13,38 @@ function checkLevel(val?: string) {
 
     return Number(val);
   }
-
-  return val;
 }
 
-function checkMimeType(val?: string) {}
-
-function checkPlatform(val?: string) {
-  if (val) {
-    if (!PLATFORM.includes(val))
-      throwErr(
-        `Platform is invalid. Allowed choices are ${PLATFORM.join(', ')}.`
-      );
-  }
-
-  return val;
-}
-
-function checkName(val?: any) {
+function checkName(val?: string) {
   if (val) {
     if (/[?\\/:*<>|"]/g.test(val))
       throwErr('Name is invalid. Should not have ?\\/:*<>|"');
   }
-
-  return val;
 }
 
-function checkFirstDirName(val?: any) {
+function checkFirstDirName(val?: string) {
   if (val) {
     if (/[?\\/:*<>|"]/g.test(val))
       throwErr('FirstDirName is invalid. Should not have ?\\/:*<>|"');
   }
+}
 
-  return val;
+function checkEncryptMethod(val?: string) {
+  if (val) {
+    if (!ENCRYPTIONMETHOD.includes(val))
+      throwErr(
+        `Compression is invalid. Allowed choices are ${ENCRYPTIONMETHOD.join(
+          ', '
+        )}.`
+      );
+  }
 }
 
 const checkOptions: {
-  [key in keyof ZipOptions]: (val?: any) => any;
+  [key in keyof ZipOptions]: (val?: any) => void;
 } = {
-  path: checkPath,
-  compression: checkCompression,
+  encryptionMethod: checkEncryptMethod,
   compressLevel: checkLevel,
-  // mimeType: checkMimeType,
-  platform: checkPlatform,
   name: checkName,
   firstDirName: checkFirstDirName
 };

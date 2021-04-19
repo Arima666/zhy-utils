@@ -1,98 +1,94 @@
-import { existsSync, promises as fsSync } from 'fs';
+import { createWriteStream, existsSync, statSync } from 'fs';
 import path from 'path';
-import JSZip from 'jszip';
+import archiver from 'archiver';
 import { program } from 'commander';
-import { logger } from '@zhy/utils';
-import { name, version } from '../package.json';
+import { logger, getConfiguration } from '@zhy/utils';
 import { Configuration } from './configs';
 import Options from './configs/options';
-import getConfiguration from './utils/getConfiguration';
-import checkOptions from './utils/checkOptions';
-import deleteOldZip from './utils/deleteOldZip';
-import readFile from './utils/readFile';
+import DefaultCfg from './configs/index.default.json';
 import getDirNameFromPath from './utils/getDirNameFromPath';
+import checkCfg from './utils/checkCfg';
+import getPackageJson from './utils/getPackageJson';
 
-const zip = new JSZip();
+const { name, version } = getPackageJson();
+
 // 当前路径
 const curPath = process.cwd();
 
 export type ZipOptions = {
   path?: string;
-  compression?: 'STORE' | 'DEFLATE';
+  encrypt?: boolean;
+  encryptionMethod?: 'aes256' | 'zip20';
   compressLevel?: number;
-  mimeType?: string;
-  platform?: 'DOS' | 'UNIX';
   name?: string;
   firstDirName?: string;
+  password?: string;
 };
-
-async function startZip(options: ZipOptions) {
-  logger.info('压缩参数\n', JSON.stringify(options, null, 2));
-  const { name, firstDirName, ...rets } = options;
-
-  try {
-    const targetPath = path.resolve(process.cwd(), options.path);
-    const targetExists = existsSync(targetPath);
-
-    if (targetExists) {
-      const targetStatus = await fsSync.stat(targetPath);
-
-      const targetName = getDirNameFromPath(targetPath);
-
-      if (targetStatus.isDirectory()) {
-        // 设置压缩包内第一层的文件夹
-        const zipFirstDir = zip.folder(firstDirName || targetName);
-        // 读取目标文件夹下所有内容
-        await readFile(zipFirstDir, targetPath);
-      } else if (targetStatus.isFile()) {
-        const file = await fsSync.readFile(targetPath);
-        if (firstDirName) {
-          const zipFirstDir = zip.folder(firstDirName);
-          zipFirstDir.file(targetName, file);
-        } else {
-          zip.file(targetName, file);
-        }
-      }
-
-      const content = await zip.generateAsync({
-        ...rets,
-        type: 'uint8array'
-      });
-
-      // 生成压缩包文件
-      await fsSync.writeFile(`${curPath}/${name}.zip`, content, 'utf-8');
-      logger.success('生成压缩包成功');
-    } else {
-      console.warn('目标文件不存在', targetPath);
-    }
-  } catch (err) {
-    throw err;
-  }
-}
 
 program.version(version, '-v, --version', `${name} 的版本`);
 // 注入命令行参数
 Object.values(Options).forEach(item => {
   program.addOption(item);
 });
-program.parse();
 
 // 合并配置文件和命令行参数
 const cfg: ZipOptions = {
-  ...getConfiguration(Configuration),
+  ...(DefaultCfg as ZipOptions),
+  ...getConfiguration(name, Configuration),
   ...program.opts()
 };
 
-checkOptions.path(cfg.path);
 // 检查参数合法性
-Object.entries(cfg).forEach(([key, val]) => {
-  checkOptions[key as keyof ZipOptions]?.(val);
-});
+checkCfg(cfg);
 
-startZip(cfg)
-  .then(() => {
-    logger.success('执行完毕！');
-  })
-  .catch(err => {
-    logger.error('执行失败！', err);
-  });
+// 检查目标文件是否存在
+const targetPath = path.resolve(process.cwd(), cfg.path);
+const targetExists = existsSync(targetPath);
+if (!targetExists) {
+  logger.warning(
+    `Compress target is not exists. Please check targetPath: ${targetPath}`
+  );
+  process.exit();
+}
+
+let zipType: 'zip' | 'zip-encrypted' = 'zip';
+type ZipOpt = {
+  encryptionMethod?: ZipOptions['encryptionMethod'];
+  password?: string;
+} & archiver.ArchiverOptions;
+let zipOpt: ZipOpt = {
+  zlib: {
+    level: Number(cfg.compressLevel) //压缩等级
+  }
+};
+if (cfg.encrypt) {
+  archiver.registerFormat('zip-encrypted', require('archiver-zip-encrypted'));
+  zipType = 'zip-encrypted';
+  zipOpt.encryptionMethod = cfg.encryptionMethod;
+  zipOpt.password = cfg.password;
+}
+
+const Output = createWriteStream(`${curPath}/${cfg.name}.zip`);
+const archive = archiver.create(zipType, zipOpt);
+
+const targetStatus = statSync(targetPath);
+const targetName = getDirNameFromPath(targetPath);
+if (targetStatus.isDirectory()) {
+  archive.directory(targetPath, false);
+} else if (targetStatus.isFile()) {
+  archive.file(targetPath, { name: targetName }); //第一个源文件,第二个生成到压缩包的文件
+}
+
+archive.pipe(Output); //将打包对象与输出流关联
+//监听所有archive数据都写完
+Output.on('close', function () {
+  logger.success('压缩完成', archive.pointer() / 1024 / 1024 + 'M');
+});
+archive.on('error', function (err) {
+  logger.error('压缩失败!');
+  throw err;
+});
+//打包
+archive.finalize();
+
+program.parse(process.argv);

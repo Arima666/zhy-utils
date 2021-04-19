@@ -1,9 +1,9 @@
 export declare type ZipOptions = {
     path?: string;
-    compression?: 'STORE' | 'DEFLATE';
+    encrypt?: boolean;
+    encryptionMethod?: 'aes256' | 'zip20';
     compressLevel?: number;
-    mimeType?: string;
-    platform?: 'DOS' | 'UNIX';
     name?: string;
     firstDirName?: string;
+    password?: string;
 };

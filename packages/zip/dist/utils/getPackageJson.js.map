@@ -1,0 +1,1 @@
+{"version":3,"file":"getPackageJson.js","sourceRoot":"","sources":["../../src/utils/getPackageJson.ts"],"names":[],"mappings":";;;;;AAAA,2BAAkC;AAClC,gDAAwB;AAExB,SAAwB,cAAc;IACpC,MAAM,WAAW,GAAG,IAAI,CAAC,KAAK,CAC5B,iBAAY,CAAC,cAAI,CAAC,OAAO,CAAC,SAAS,GAAG,uBAAuB,CAAC,EAAE,OAAO,CAAC,CACzE,CAAC;IAEF,OAAO,WAAW,CAAC;AACrB,CAAC;AAND,iCAMC"}

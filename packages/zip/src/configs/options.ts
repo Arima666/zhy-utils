@@ -20,7 +20,8 @@ const Options: {
     '-f, --first-dir-name [dir]',
     '压缩文件首层文件夹名字'
   ),
-  password: new commander.Option('-p, --password [password]', '压缩密码')
+  password: new commander.Option('-p, --password [password]', '压缩密码'),
+  destPath: new commander.Option('-d, --dest-path', '是否生成根目录')
 };
 
 export default Options;

@@ -12,7 +12,8 @@ const Options = {
     compressLevel: new commander_1.default.Option('-l, --compress-level [level]', '压缩的等级').choices(index_1.COMPRESS_LEVEL),
     name: new commander_1.default.Option('-n, --name [name]', '压缩文件名字'),
     firstDirName: new commander_1.default.Option('-f, --first-dir-name [dir]', '压缩文件首层文件夹名字'),
-    password: new commander_1.default.Option('-p, --password [password]', '压缩密码')
+    password: new commander_1.default.Option('-p, --password [password]', '压缩密码'),
+    destPath: new commander_1.default.Option('-d, --dest-path', '是否生成根目录')
 };
 exports.default = Options;
 //# sourceMappingURL=options.js.map

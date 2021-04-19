@@ -36,7 +36,8 @@ function checkCfg(_a) {
     if (!path)
         checkOptions_1.throwErr('Path is required');
     Object.entries(rest).forEach(([key, val]) => {
-        checkOptions_1.default[key](val);
+        var _a;
+        (_a = checkOptions_1.default[key]) === null || _a === void 0 ? void 0 : _a.call(checkOptions_1.default, val);
     });
     if (rest.encrypt) {
         if (!rest.password)

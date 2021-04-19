@@ -20,6 +20,7 @@ commander_1.program.version(version, '-v, --version', `${name} 的版本`);
 Object.values(options_1.default).forEach(item => {
     commander_1.program.addOption(item);
 });
+commander_1.program.parse(process.argv);
 const cfg = Object.assign(Object.assign(Object.assign({}, index_default_json_1.default), utils_1.getConfiguration(name, configs_1.Configuration)), commander_1.program.opts());
 checkCfg_1.default(cfg);
 const targetPath = path_1.default.resolve(process.cwd(), cfg.path);
@@ -45,7 +46,7 @@ const archive = archiver_1.default.create(zipType, zipOpt);
 const targetStatus = fs_1.statSync(targetPath);
 const targetName = getDirNameFromPath_1.default(targetPath);
 if (targetStatus.isDirectory()) {
-    archive.directory(targetPath, false);
+    archive.directory(targetPath, cfg.destPath ? cfg.firstDirName || targetName : false);
 }
 else if (targetStatus.isFile()) {
     archive.file(targetPath, { name: targetName });
@@ -59,5 +60,4 @@ archive.on('error', function (err) {
     throw err;
 });
 archive.finalize();
-commander_1.program.parse(process.argv);
 //# sourceMappingURL=index.js.map

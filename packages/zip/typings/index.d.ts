@@ -6,4 +6,5 @@ export declare type ZipOptions = {
     name?: string;
     firstDirName?: string;
     password?: string;
+    destPath?: boolean;
 };

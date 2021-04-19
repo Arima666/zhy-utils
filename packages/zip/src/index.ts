@@ -23,6 +23,7 @@ export type ZipOptions = {
   name?: string;
   firstDirName?: string;
   password?: string;
+  destPath?: boolean;
 };
 
 program.version(version, '-v, --version', `${name} 的版本`);
@@ -30,6 +31,8 @@ program.version(version, '-v, --version', `${name} 的版本`);
 Object.values(Options).forEach(item => {
   program.addOption(item);
 });
+
+program.parse(process.argv);
 
 // 合并配置文件和命令行参数
 const cfg: ZipOptions = {
@@ -74,7 +77,10 @@ const archive = archiver.create(zipType, zipOpt);
 const targetStatus = statSync(targetPath);
 const targetName = getDirNameFromPath(targetPath);
 if (targetStatus.isDirectory()) {
-  archive.directory(targetPath, false);
+  archive.directory(
+    targetPath,
+    cfg.destPath ? cfg.firstDirName || targetName : false
+  );
 } else if (targetStatus.isFile()) {
   archive.file(targetPath, { name: targetName }); //第一个源文件,第二个生成到压缩包的文件
 }
@@ -90,5 +96,3 @@ archive.on('error', function (err) {
 });
 //打包
 archive.finalize();
-
-program.parse(process.argv);

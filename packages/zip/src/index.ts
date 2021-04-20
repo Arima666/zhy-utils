@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { createWriteStream, existsSync, statSync } from 'fs';
 import path from 'path';
 import archiver from 'archiver';

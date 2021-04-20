@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 export declare type ZipOptions = {
     path?: string;
     encrypt?: boolean;

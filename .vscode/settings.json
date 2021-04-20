@@ -3,6 +3,7 @@
     "ENCRYPTIONMETHOD",
     "compressrc",
     "jszip",
-    "nodebuffer"
+    "nodebuffer",
+    "fatyu"
   ]
 }

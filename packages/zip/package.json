@@ -2,10 +2,12 @@
   "name": "@zhy/utils-zip",
   "version": "1.0.0",
   "license": "MIT",
+  "description": "compress resource cli",
   "typings": "typings/index.d.ts",
   "bin": {
-    "compress": "dist/index.js"
+    "zip": "dist/index.js"
   },
+  "homepage": "https://github.com/Arima-P/zhy-utils/tree/main/packages/zip#readme",
   "scripts": {
     "build": "sh ./scripts/build.sh",
     "dev": "tsc --project tsconfig.build.json -w"

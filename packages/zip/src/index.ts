@@ -71,15 +71,15 @@ if (cfg.encrypt) {
   zipOpt.password = cfg.password;
 }
 
-const Output = createWriteStream(`${curPath}/${cfg.name}.zip`);
-const archive = archiver.create(zipType, zipOpt);
-
 const targetStatus = statSync(targetPath);
 const targetName = getDirNameFromPath(targetPath);
+const Output = createWriteStream(`${curPath}/${cfg.name || targetName}.zip`);
+const archive = archiver.create(zipType, zipOpt);
+
 if (targetStatus.isDirectory()) {
   archive.directory(
     targetPath,
-    cfg.destPath ? cfg.firstDirName || targetName : false
+    cfg.destPath ? cfg.firstDirName || cfg.name || targetName : false
   );
 } else if (targetStatus.isFile()) {
   archive.file(targetPath, { name: targetName }); //第一个源文件,第二个生成到压缩包的文件

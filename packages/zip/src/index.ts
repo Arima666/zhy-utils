@@ -2,7 +2,7 @@ import { createWriteStream, existsSync, statSync } from 'fs';
 import path from 'path';
 import archiver from 'archiver';
 import { program } from 'commander';
-import { logger, getConfiguration } from '@zhy/utils';
+import { logger, getConfiguration } from '@fatyu/utils';
 import { Configuration } from './configs';
 import Options from './configs/options';
 import DefaultCfg from './configs/index.default.json';

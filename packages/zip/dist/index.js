@@ -7,7 +7,7 @@ const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
 const archiver_1 = __importDefault(require("archiver"));
 const commander_1 = require("commander");
-const utils_1 = require("@zhy/utils");
+const utils_1 = require("@fatyu/utils");
 const configs_1 = require("./configs");
 const options_1 = __importDefault(require("./configs/options"));
 const index_default_json_1 = __importDefault(require("./configs/index.default.json"));
@@ -41,12 +41,12 @@ if (cfg.encrypt) {
     zipOpt.encryptionMethod = cfg.encryptionMethod;
     zipOpt.password = cfg.password;
 }
-const Output = fs_1.createWriteStream(`${curPath}/${cfg.name}.zip`);
-const archive = archiver_1.default.create(zipType, zipOpt);
 const targetStatus = fs_1.statSync(targetPath);
 const targetName = getDirNameFromPath_1.default(targetPath);
+const Output = fs_1.createWriteStream(`${curPath}/${cfg.name || targetName}.zip`);
+const archive = archiver_1.default.create(zipType, zipOpt);
 if (targetStatus.isDirectory()) {
-    archive.directory(targetPath, cfg.destPath ? cfg.firstDirName || targetName : false);
+    archive.directory(targetPath, cfg.destPath ? cfg.firstDirName || cfg.name || targetName : false);
 }
 else if (targetStatus.isFile()) {
     archive.file(targetPath, { name: targetName });

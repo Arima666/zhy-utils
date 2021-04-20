@@ -12,6 +12,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "test": "jest --color",
+    "publish": "lerna publish --conventional-commits",
     "commit": "git add . && git cz"
   },
   "repository": {

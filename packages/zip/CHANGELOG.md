@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.3...@fatyu/zip@1.2.4) (2021-04-20)
+
+
+### Bug Fixes
+
+* **zip:** zip root change to bin ([b250260](https://github.com/Arima-P/zhy-utils/commit/b250260b874f53c289e57299077021b88bbf89e9))
+
+
+
+
+
 ## [1.2.3](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.2...@fatyu/zip@1.2.3) (2021-04-20)
 
 **Note:** Version bump only for package @fatyu/zip

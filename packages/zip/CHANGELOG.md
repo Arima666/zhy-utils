@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.1...@fatyu/zip@1.2.2) (2021-04-20)
+
+
+### Bug Fixes
+
+* **zip:** 修复 @zhy/utils 引用为 @fatyu/utils ([1554fd5](https://github.com/Arima-P/zhy-utils/commit/1554fd53f14557b2bd54b284b221e4af2a7acf64))
+
+
+
+
+
 ## [1.2.1](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.0...@fatyu/zip@1.2.1) (2021-04-20)
 
 

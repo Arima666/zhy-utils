@@ -1,5 +1,5 @@
 {
-  "name": "@zhy/utils-zip",
+  "name": "zhy-utils-zip",
   "version": "1.0.0",
   "license": "MIT",
   "description": "compress resource cli",

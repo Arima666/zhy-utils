@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.4...@fatyu/zip@1.2.5) (2021-04-20)
+
+
+### Bug Fixes
+
+* **zip:** add #!/usr/bin/env node ([d8c5dc5](https://github.com/Arima-P/zhy-utils/commit/d8c5dc5f25f282cab639dc247e874a5dec7dff8d))
+
+
+
+
+
 ## [1.2.4](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.2.3...@fatyu/zip@1.2.4) (2021-04-20)
 
 

@@ -1,4 +1,4 @@
 {
-  "compressLevel": 1,
+  "compressLevel": "1",
   "encryptionMethod": "zip20"
 }

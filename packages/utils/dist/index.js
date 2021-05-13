@@ -3,9 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = exports.is = exports.getConfiguration = void 0;
+exports.logger = exports.is = exports.getJson = exports.getConfiguration = void 0;
 var getConfiguration_1 = require("./getConfiguration");
 Object.defineProperty(exports, "getConfiguration", { enumerable: true, get: function () { return __importDefault(getConfiguration_1).default; } });
+var getJson_1 = require("./getJson");
+Object.defineProperty(exports, "getJson", { enumerable: true, get: function () { return __importDefault(getJson_1).default; } });
 var is_1 = require("./is");
 Object.defineProperty(exports, "is", { enumerable: true, get: function () { return __importDefault(is_1).default; } });
 var logger_1 = require("./logger");

@@ -1,0 +1,32 @@
+{
+  "name": "@fatyu/git-diff",
+  "version": "0.0.1",
+  "description": "git diff 脚本",
+  "typings": "typings/index.d.ts",
+  "main": "bin/index.js",
+  "bin": {
+    "git-diff": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "sh ./scripts/build.sh",
+    "dev": "tsc --project tsconfig.build.json -w"
+  },
+  "keywords": [
+    "git",
+    "diff",
+    "node",
+    "ts",
+    "shell"
+  ],
+  "author": "Arima <arima_p@foxmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fatyu/utils": "^1.0.1",
+    "commander": "^7.2.0",
+    "execa": "^5.0.0",
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.1"
+  }
+}

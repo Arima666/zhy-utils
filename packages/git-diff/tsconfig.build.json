@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*"],
+  "exclude": ["**/*.test.ts"],
+  "compilerOptions": {
+    // "rootDir": "./src/",
+    "outDir": "bin",
+    "declaration": true,
+    "module": "CommonJS",
+    "target": "ES6",
+    "sourceMap": true,
+    "declarationDir": "typings"
+  }
+}

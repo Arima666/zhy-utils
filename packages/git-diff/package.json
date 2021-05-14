@@ -4,6 +4,7 @@
   "description": "git diff 脚本",
   "typings": "typings/index.d.ts",
   "main": "bin/index.js",
+  "homepage": "https://github.com/Arima-P/zhy-utils/tree/main/packages/git-diff#fatyugit-diff",
   "bin": {
     "git-diff": "./bin/index.js"
   },

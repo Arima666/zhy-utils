@@ -4,4 +4,5 @@ export declare type Options = {
     fileType: ITYPES;
     source?: string;
     target?: string;
+    exclude?: string;
 };

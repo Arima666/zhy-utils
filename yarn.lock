@@ -1075,6 +1075,14 @@
   resolved "https://registry.npm.taobao.org/@types/parse-json/download/@types/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha1-L4u0QUNNFjs1+4/9zNcTiSf/uMA=
 
+"@types/shelljs@^0.8.8":
+  version "0.8.8"
+  resolved "https://registry.npm.taobao.org/@types/shelljs/download/@types/shelljs-0.8.8.tgz#e439c69929b88a2c8123c1a55e09eb708315addf"
+  integrity sha1-5DnGmSm4iiyBI8GlXgnrcIMVrd8=
+  dependencies:
+    "@types/glob" "*"
+    "@types/node" "*"
+
 "@types/through@*":
   version "0.0.30"
   resolved "https://registry.npm.taobao.org/@types/through/download/@types/through-0.0.30.tgz?cache=0&sync_timestamp=1613384630653&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fthrough%2Fdownload%2F%40types%2Fthrough-0.0.30.tgz#e0e42ce77e897bd6aead6f6ea62aeb135b8a3895"
@@ -5240,9 +5248,9 @@ shebang-regex@^3.0.0:
   resolved "https://registry.npm.taobao.org/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
 
-shelljs@^0.8.3:
+shelljs@^0.8.3, shelljs@^0.8.4:
   version "0.8.4"
-  resolved "https://registry.npm.taobao.org/shelljs/download/shelljs-0.8.4.tgz?cache=0&sync_timestamp=1607396725654&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fshelljs%2Fdownload%2Fshelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
+  resolved "https://registry.nlark.com/shelljs/download/shelljs-0.8.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fshelljs%2Fdownload%2Fshelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha1-3naE/ut2f4cWsyYHiooAh1iQ48I=
   dependencies:
     glob "^7.0.0"

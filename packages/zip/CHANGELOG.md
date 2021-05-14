@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.3.1...@fatyu/zip@1.4.0) (2021-05-14)
+
+
+### Features
+
+* **diff:** 增大 git diff name 显示长度 ([e85d4b8](https://github.com/Arima-P/zhy-utils/commit/e85d4b8e4e46aadc6c33e4055b36214138be6d44))
+
+
+
+
+
 ## [1.3.1](https://github.com/Arima-P/zhy-utils/compare/@fatyu/zip@1.3.0...@fatyu/zip@1.3.1) (2021-05-14)
 
 **Note:** Version bump only for package @fatyu/zip

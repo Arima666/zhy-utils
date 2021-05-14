@@ -1,6 +1,6 @@
 {
   "name": "@fatyu/node-git-diff",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "git diff 脚本",
   "typings": "typings/index.d.ts",
   "main": "bin/index.js",
@@ -22,7 +22,7 @@
   "author": "Arima <arima_p@foxmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@fatyu/utils": "1.1.1",
+    "@fatyu/utils": "1.1.2",
     "commander": "^7.2.0",
     "execa": "^5.0.0",
     "inquirer": "^8.0.0",

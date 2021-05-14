@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Arima-P/zhy-utils/compare/@fatyu/node-git-diff@0.2.0...@fatyu/node-git-diff@0.3.0) (2021-05-14)
+
+
+### Features
+
+* **diff:** 增大 git diff name 显示长度 ([e85d4b8](https://github.com/Arima-P/zhy-utils/commit/e85d4b8e4e46aadc6c33e4055b36214138be6d44))
+
+
+
+
+
 # 0.2.0 (2021-05-14)
 
 

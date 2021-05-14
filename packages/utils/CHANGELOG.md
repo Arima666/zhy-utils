@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/Arima-P/zhy-utils/compare/@fatyu/utils@1.1.1...@fatyu/utils@1.1.2) (2021-05-14)
+
+**Note:** Version bump only for package @fatyu/utils
+
+
+
+
+
 ## [1.1.1](https://github.com/Arima-P/zhy-utils/compare/@fatyu/utils@1.1.0...@fatyu/utils@1.1.1) (2021-05-14)
 
 **Note:** Version bump only for package @fatyu/utils

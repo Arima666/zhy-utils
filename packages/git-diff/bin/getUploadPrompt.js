@@ -55,7 +55,7 @@ function getTagList() {
         }
     });
 }
-const Branch = ['custom'];
+const Branch = ['commit'];
 const PromptMap = {
     fileType: {
         type: 'list',

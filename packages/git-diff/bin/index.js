@@ -56,7 +56,7 @@ commander_1.program
     switch (opts.fileType) {
         case 'diff':
         case 'patch':
-            shelljs_1.default.exec(`git diff ${opts.source} ${opts.target} --stat-name-width=200 --stat-graph-width=3 > ${name}.${opts.fileType}`);
+            shelljs_1.default.exec(`git diff ${opts.source} ${opts.target} --stat=1000,900 --stat-graph-width=5 > ${name}.${opts.fileType}`);
             break;
         default:
             try {

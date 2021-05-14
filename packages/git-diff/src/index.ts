@@ -36,7 +36,7 @@ program
       case 'diff':
       case 'patch':
         shell.exec(
-          `git diff ${opts.source} ${opts.target} --stat-name-width=200 --stat-graph-width=3 > ${name}.${opts.fileType}`
+          `git diff ${opts.source} ${opts.target} --stat=1000,900 --stat-graph-width=5 > ${name}.${opts.fileType}`
         );
         break;
       default:

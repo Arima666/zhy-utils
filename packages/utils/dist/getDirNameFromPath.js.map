@@ -1,0 +1,1 @@
+{"version":3,"file":"getDirNameFromPath.js","sourceRoot":"","sources":["../src/getDirNameFromPath.ts"],"names":[],"mappings":";;AAAA,SAAwB,kBAAkB,CAAC,IAAY;IACrD,MAAM,OAAO,GAAG,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC;IACjC,OAAO,OAAO,CAAC,OAAO,CAAC,MAAM,GAAG,CAAC,CAAC,CAAC;AACrC,CAAC;AAHD,qCAGC"}

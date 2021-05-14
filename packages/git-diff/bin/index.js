@@ -42,6 +42,7 @@ const { name, version } = utils_1.getJson([
     __dirname,
     '../package.json'
 ]);
+const curDirName = utils_1.getDirNameFromPath(process.cwd());
 commander_1.program
     .version(version, '-v, --version', `${name} 的版本`)
     .addOption(new commander_1.Option('-f, --file-type [type]', '输出文件类型')
@@ -82,7 +83,9 @@ commander_1.program
                     const arr = item.match(/\s(\S.+\S)\s+\|\s+(\d+).*/);
                     if (!arr)
                         return [item];
-                    return arr.slice(1, 3);
+                    const arr1 = arr.slice(1, 3);
+                    arr1[0] = `${curDirName}/${arr1[0]}`;
+                    return arr1;
                 })
                     .map(item => item.join(','));
                 const csvArr = [

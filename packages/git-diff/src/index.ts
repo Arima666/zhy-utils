@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { getJson, logger } from '@fatyu/utils';
+import { getDirNameFromPath, getJson, logger } from '@fatyu/utils';
 import { program, Option } from 'commander';
 import { writeFileSync } from 'fs';
 import exec from 'execa';
@@ -11,6 +11,8 @@ const { name, version } = getJson<{ name: string; version: string }>([
   __dirname,
   '../package.json'
 ]);
+
+const curDirName = getDirNameFromPath(process.cwd());
 
 export type Options = {
   fileType: ITYPES;
@@ -63,7 +65,10 @@ program
             .map(item => {
               const arr = item.match(/\s(\S.+\S)\s+\|\s+(\d+).*/);
               if (!arr) return [item];
-              return arr.slice(1, 3);
+              const arr1 = arr.slice(1, 3);
+              // 加上当前项目文件夹名字
+              arr1[0] = `${curDirName}/${arr1[0]}`;
+              return arr1;
             })
             .map(item => item.join(','));
 

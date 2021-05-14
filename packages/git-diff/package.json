@@ -30,5 +30,6 @@
   "devDependencies": {
     "@types/inquirer": "^7.3.1",
     "@types/shelljs": "^0.8.8"
-  }
+  },
+  "gitHead": "1835659db50772119c36df51ae1f78440f88c5a2"
 }

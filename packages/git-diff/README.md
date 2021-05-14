@@ -1,7 +1,5 @@
 # @fatyu/git-diff
 
-> compress resource cli
-
 ## 能力
 
 - 通过命令行快速选择需要 diff 的分支、tag、commit

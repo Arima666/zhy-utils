@@ -64,8 +64,8 @@ commander_1.program
                     'diff',
                     opts.source,
                     opts.target,
-                    '--stat-name-width=200',
-                    '--stat-graph-width=3'
+                    '--stat=1000,900',
+                    '--stat-graph-width=5'
                 ])).stdout;
                 const patt = new RegExp(`\.${opts.exclude}`, 'gi');
                 const diffArr = diff

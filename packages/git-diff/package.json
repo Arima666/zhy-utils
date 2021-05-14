@@ -1,5 +1,5 @@
 {
-  "name": "@fatyu/git-diff",
+  "name": "@fatyu/node-git-diff",
   "version": "0.1.0",
   "description": "git diff 脚本",
   "typings": "typings/index.d.ts",

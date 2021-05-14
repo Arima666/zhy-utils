@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Arima-P/zhy-utils/compare/@fatyu/node-git-diff@0.3.1...@fatyu/node-git-diff@0.4.0) (2021-05-14)
+
+
+### Features
+
+* **git-diff:** csv 文件路径增加当前项目所在文件夹名称 ([75451b4](https://github.com/Arima-P/zhy-utils/commit/75451b4ee3c86c46d3e6c62f42491896ce7f7296))
+
+
+
+
+
 ## [0.3.1](https://github.com/Arima-P/zhy-utils/compare/@fatyu/node-git-diff@0.3.0...@fatyu/node-git-diff@0.3.1) (2021-05-14)
 
 

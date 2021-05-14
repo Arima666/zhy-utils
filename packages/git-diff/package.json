@@ -1,6 +1,6 @@
 {
   "name": "@fatyu/node-git-diff",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "git diff 脚本",
   "typings": "typings/index.d.ts",
   "main": "bin/index.js",

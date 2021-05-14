@@ -1,4 +1,4 @@
-# @zhy/utils-zip
+# @fatyu/zip
 
 > compress resource cli
 
@@ -13,10 +13,10 @@
 
 ```sh
 # npm
-npm i @zhy/utils-zip -D
+npm i @fatyu/zip -D
 
 # yarn
-yarn add @zhy/utils-zip -D
+yarn add @fatyu/zip -D
 ```
 
 ### 使用

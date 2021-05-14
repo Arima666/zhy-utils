@@ -45,7 +45,7 @@ async function getTagList(): Promise<string[]> {
   }
 }
 
-const Branch = ['custom'];
+const Branch = ['commit'];
 
 const PromptMap: { [key in keyof Options]: DistinctQuestion } = {
   fileType: {
